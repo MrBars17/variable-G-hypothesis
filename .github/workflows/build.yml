@@ -1,0 +1,40 @@
+﻿name: build-paper
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python deps
+        run: python -m pip install --upgrade matplotlib numpy
+
+      - name: Run plot script
+        run: python code/plot_G.py
+
+      - name: Install TeX Live minimal
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-science xzdec
+
+      - name: Compile PDF
+        working-directory: docs
+        run: |
+          xelatex short_paper.tex
+          xelatex short_paper.tex
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdf-and-fig
+          path: |
+            docs/short_paper.pdf
+            figures/G_evolution.png

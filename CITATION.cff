@@ -1,0 +1,12 @@
+﻿cff-version: 1.2.0
+message: "Please cite this work if you use the variable‑G model."
+title: "Variable‑G Hypothesis: a logistic G(t) for cosmological tensions"
+authors:
+  - family-names: Kumyshev
+    given-names: Ruslan
+    affiliation: Independent researcher
+    orcid: "0000-0000-0000-0000"   # если нет — удалите строку
+date-released: 2025-03-30
+keywords: [cosmology, varying constants, lithium problem, H0 tension, sigma8]
+license: MIT
+repository-code: "https://github.com/mrbars17/variable-G-hypothesis"
